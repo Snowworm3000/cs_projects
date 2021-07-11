@@ -8,6 +8,7 @@ function GameBoard({ rows, cols, spacing, boardSize }) {
     const [{ width: tileWidth, height: tileHeight }, setTileSize] = useState(() =>
       calcTileSize(boardSize, rows, cols, spacing),
     );
+    
     const Cells = useMemo(() => {
         const cells = createIndexArray(rows * cols);
         return cells.map((c) => <StyledCell key={c} />);

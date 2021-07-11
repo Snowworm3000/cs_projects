@@ -8,10 +8,10 @@ const StyledGrid = styled.div`
   grid-template-rows: ${({ rows }) => `repeat(${rows}, 1fr)`};
   grid-template-columns: ${({ cols }) => `repeat(${cols}, 1fr)`};
   grid-gap: ${({ spacing }) => `${spacing}px ${spacing}px`};
-  background-color: #ff00ff;
+  background-color: ${props => props.theme.colors.gridBackground};
   border-radius: ${({ theme: { borderRadius } }) => borderRadius};
   border: ${({ spacing }) =>
-    `${spacing}px solid #00ff00`};
+    `${spacing}px solid `} ${props => props.theme.colors.gridOutline};
 `;
 
 export default StyledGrid;

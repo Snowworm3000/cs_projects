@@ -9,7 +9,7 @@ import './App.css';
 function App() {
   const rows = 10
   const cols = 10
-  const spacing = 10
+  const spacing = 5
   const gridSize = 370
   const APP_NAME = 'battleships'
 

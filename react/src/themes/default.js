@@ -3,14 +3,17 @@ const theme = {
     powderWhite: "#FFFDF9",
     persianGreen: "#06B49A",
     lightBlue: "#AFDBD2",
-    onyx: "#36313D"
+    cell: "#ffffff",
+    gridBackground: "#216efc",
+    gridOutline: "#333333"
   },
   fonts: ["sans-serif", "Roboto"],
   fontSizes: {
     small: "1em",
     medium: "2em",
     large: "3em"
-  }
+  },
+  borderRadius: "2px",
 };
 
 export default theme;

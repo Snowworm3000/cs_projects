@@ -5,6 +5,7 @@ import useTheme from '../hooks/useTheme';
 import { useEffect } from 'react';
 import theme from '../themes/default';
 import './App.css';
+import useGameBoard from '../hooks/useGameBoard';
 
 function App() {
   const rows = 10
@@ -24,6 +25,15 @@ function App() {
     config.theme,
   );
 
+  const { tiles, onMove, onMovePending } = useGameBoard({
+    rows,
+    cols,
+    pause,
+    gameStatus,
+    setGameStatus,
+    addScore,
+  });
+
   // const [rows, setRows] = useScaleControl(config.rows);
   // const [cols, setCols] = useScaleControl(config.cols);
 
@@ -34,13 +44,22 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
-        <p>Battleships</p>
+        <h1>Battleships</h1>
+        <p>Fleet</p>
         <GameBoard
+          tiles={tiles}
           rows={rows}
           cols={cols}
           spacing={spacing}
           boardSize={gridSize}
         />
+        {/* <p>Opponent</p>
+        <GameBoard
+          rows={rows}
+          cols={cols}
+          spacing={spacing}
+          boardSize={gridSize}
+        /> */}
       </div>
     </ThemeProvider>
   );

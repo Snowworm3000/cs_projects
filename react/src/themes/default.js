@@ -5,7 +5,8 @@ const theme = {
     lightBlue: "#AFDBD2",
     cell: "#ffffff",
     gridBackground: "#216efc",
-    gridOutline: "#333333"
+    gridOutline: "#333333",
+    hit: "#cf1414"
   },
   fonts: ["sans-serif", "Roboto"],
   fontSizes: {

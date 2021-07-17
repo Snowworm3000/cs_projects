@@ -2,8 +2,8 @@ import { useEffect } from "react/cjs/react.production.min"
 
 function useClickListener(ref, callback){
     function onClick(e){
-        // callback(e)
-        console.log(e)
+        callback(e)
+        console.log(e, "click")
     }
 
     useEffect(() => {

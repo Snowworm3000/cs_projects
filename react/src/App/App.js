@@ -6,6 +6,8 @@ import { useEffect } from 'react';
 import theme from '../themes/default';
 import './App.css';
 import useGameBoard from '../hooks/useGameBoard';
+import useGameState from '../hooks/useGameState';
+import React from 'react';
 
 function App() {
   const rows = 10
@@ -13,6 +15,11 @@ function App() {
   const spacing = 5
   const gridSize = 370
   const APP_NAME = 'battleships'
+
+  const [{ status: gameStatus, pause }, setGameStatus] = useGameState({
+    status: 'running',
+    pause: false,
+  });
 
   const [config, setConfig] = useLocalStorage(APP_NAME, {
     theme: 'default',
@@ -31,7 +38,6 @@ function App() {
     pause,
     gameStatus,
     setGameStatus,
-    addScore,
   });
 
   // const [rows, setRows] = useScaleControl(config.rows);
@@ -52,6 +58,7 @@ function App() {
           cols={cols}
           spacing={spacing}
           boardSize={gridSize}
+          onMove={onMove}
         />
         {/* <p>Opponent</p>
         <GameBoard

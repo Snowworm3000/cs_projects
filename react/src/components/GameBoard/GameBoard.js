@@ -6,7 +6,7 @@ import { calcTileSize } from "../../utils/common";
 import useClickListener from "../../hooks/useClickListener";
 import Tile from "../Tile";
 
-function GameBoard({ rows, cols, spacing, boardSize, tiles }) {
+function GameBoard({ rows, cols, spacing, boardSize, tiles, onMove }) {
   const [{ width: tileWidth, height: tileHeight }, setTileSize] = useState(() =>
     calcTileSize(boardSize, rows, cols, spacing),
   );
@@ -16,13 +16,23 @@ function GameBoard({ rows, cols, spacing, boardSize, tiles }) {
     return cells.map((c) => <StyledCell key={c} />);
   }, [rows, cols]);
 
-  const boardRef = useRef(null)
-  useClickListener(boardRef, null)
+  // const boardRef = useRef(null)
+  // useClickListener(boardRef, onMove)
+
+  function handleClick(e) {
+    console.log(e, "click")
+    // onMove(e)
+    const rect = e.currentTarget.getBoundingClientRect()
+    var x = e.clientX - rect.left; //x position within the element.
+    var y = e.clientY - rect.top; //y position within the element.
+    console.log(x,y)
+    onMove(x,y,rect.width,rect.height)
+  }
 
   console.log(tileWidth, tileHeight)
   return (
-    <div ref={boardRef}>
-      <StyledGrid
+    <div >
+      <StyledGrid onClick={handleClick}
         width={boardSize}
         height={boardSize}
         rows={rows}

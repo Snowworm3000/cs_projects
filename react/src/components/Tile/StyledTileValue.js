@@ -11,8 +11,7 @@ const StyledTileValue = styled.div`
   justify-content: center;
   border-radius: ${({ theme }) => theme.borderRadius};
   background-color: ${props => props.theme.colors.hit};
-  color: ${({ theme: { palette }, value }) =>
-    value > 4 ? palette.foreground : palette.primary};
+  color: ${props => props.theme.colors.primary};
   user-select: none;
 `;
 

@@ -13,3 +13,8 @@ export const calcTileSize = (
 
 export const calcLocation = (l, c, spacing) =>
   (spacing + l) * c + spacing;
+
+let _tileIndex = 0
+export const nextTileIndex = () => _tileIndex++;
+
+export const getId = (ind) => `${ind}_${Date.now()}`;

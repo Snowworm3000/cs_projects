@@ -8,6 +8,7 @@ import './App.css';
 import useGameBoard from '../hooks/useGameBoard';
 import useGameState from '../hooks/useGameState';
 import React from 'react';
+import Box from '../components/Box';
 
 function App() {
   const rows = 10
@@ -32,7 +33,7 @@ function App() {
     config.theme,
   );
 
-  const { tiles, onMove, onMovePending } = useGameBoard({
+  const { tiles, onMove } = useGameBoard({
     rows,
     cols,
     pause,
@@ -52,14 +53,20 @@ function App() {
       <div className="App">
         <h1>Battleships</h1>
         <p>Fleet</p>
-        <GameBoard
-          tiles={tiles}
-          rows={rows}
-          cols={cols}
-          spacing={spacing}
-          boardSize={gridSize}
-          onMove={onMove}
-        />
+        <Box
+          justifyContent="center"
+          flexDirection="column"
+          inlineSize={`${gridSize}px`}
+        >
+          <GameBoard
+            tiles={tiles}
+            rows={rows}
+            cols={cols}
+            spacing={spacing}
+            boardSize={gridSize}
+            onMove={onMove}
+          />
+        </Box>
         {/* <p>Opponent</p>
         <GameBoard
           rows={rows}

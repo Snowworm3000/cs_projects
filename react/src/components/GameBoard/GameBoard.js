@@ -5,6 +5,8 @@ import StyledGrid from "./StyledGrid";
 import { calcTileSize } from "../../utils/common";
 import useClickListener from "../../hooks/useClickListener";
 import Tile from "../Tile";
+import { useEffect } from "react";
+import Box from "../Box";
 
 function GameBoard({ rows, cols, spacing, boardSize, tiles, onMove }) {
   const [{ width: tileWidth, height: tileHeight }, setTileSize] = useState(() =>
@@ -25,9 +27,17 @@ function GameBoard({ rows, cols, spacing, boardSize, tiles, onMove }) {
     const rect = e.currentTarget.getBoundingClientRect()
     var x = e.clientX - rect.left; //x position within the element.
     var y = e.clientY - rect.top; //y position within the element.
-    console.log(x,y)
-    onMove(x,y,rect.width,rect.height)
+    console.log(x, y)
+    onMove(x, y, rect.width, rect.height)
   }
+
+  useEffect(() => {
+    console.log(tiles)
+    
+    console.log("done")
+  }, [tiles])
+  console.log(tiles)
+
 
   console.log(tileWidth, tileHeight)
   return (
@@ -40,18 +50,28 @@ function GameBoard({ rows, cols, spacing, boardSize, tiles, onMove }) {
         spacing={spacing}>
         {Cells}
       </StyledGrid>
-      {tiles?.map(({ r, c, id, value, isMerging, isNew }) => (
+      {/* <Box
+        position="absolute"
+        top={0}
+        left={0}
+        blockSize="100%"
+        inlineSize="100%"
+      > */}
+      {tiles?.map(({ col, row, id, value, isMerging, isNew }) => (
           <Tile
             key={id}
             width={tileWidth}
             height={tileHeight}
-            x={calcLocation(tileWidth, c, spacing)}
-            y={calcLocation(tileHeight, r, spacing)}
+            x={calcLocation(tileWidth, col, spacing)}
+            y={calcLocation(tileHeight, row, spacing)}
             value={value}
             isNew={isNew}
             isMerging={isMerging}
           />
         ))}
+      {/* </Box> */}
+
+
     </div>
   )
 }

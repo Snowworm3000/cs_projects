@@ -8,18 +8,17 @@ const Tile= ({
   y,
   width,
   height,
-  color,
   isNew = false,
   isMerging = false,
 }) => (
   <StyledTile value={value} x={x} y={y} width={width} height={height}>
     <StyledTileValue
       value={value}
-      backgroundColor= {color}
+      // backgroundColor= {value}
       isNew={isNew}
       isMerging={isMerging}
     >
-      {value}
+      {/* {value} */}
     </StyledTileValue>
   </StyledTile>
 );

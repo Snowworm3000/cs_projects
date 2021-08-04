@@ -47,7 +47,7 @@ const types = {
   hit: 1,
   sink: 2
 }
-const hitType = (x, y) => {
+const hitType = (x, y) => { // TODO: Change hitType dynamically depending on the value recieved from the server
   return types.miss
 }
 

@@ -9,6 +9,7 @@ import useGameBoard from '../hooks/useGameBoard';
 import useGameState from '../hooks/useGameState';
 import React from 'react';
 import Box from '../components/Box';
+import TileContainer from '../components/TileContainer';
 
 function App() {
   const rows = 10
@@ -53,9 +54,7 @@ function App() {
       <div className="App">
         <h1>Battleships</h1>
         <p>Fleet</p>
-        <Box
-          justifyContent="center"
-          flexDirection="column"
+        <TileContainer
           inlineSize={`${gridSize}px`}
         >
           <GameBoard
@@ -66,7 +65,7 @@ function App() {
             boardSize={gridSize}
             onMove={onMove}
           />
-        </Box>
+        </TileContainer>
         {/* <p>Opponent</p>
         <GameBoard
           rows={rows}

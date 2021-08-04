@@ -6,8 +6,9 @@ const theme = {
     cell: "#ffffff",
     gridBackground: "#216efc",
     gridOutline: "#333333",
-    hit: "#6b6b6b",
-    primary: "#ff6d6d"
+    hit: "#ff00006c",
+    miss: "#ffffff6c",
+    primary: "#000000"
   },
   fonts: ["sans-serif", "Roboto"],
   fontSizes: {

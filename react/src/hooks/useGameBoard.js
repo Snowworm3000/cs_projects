@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, useCallback, useLayoutEffect } from "react";
-import { getId, nextTileIndex } from "../utils/common";
+import { getId, gridPosition, nextTileIndex } from "../utils/common";
 
 const resetGameBoard = (rows, cols) => {
   // Index restarts from 0 on reset
@@ -52,20 +52,6 @@ const hitType = (x, y) => { // TODO: Change hitType dynamically depending on the
 }
 
 
-
-function cellLocation(coordinate, length, gridSize) { // Locates the cell position knowing the length of the board (either width or height) by finding the maximum individual cell length and rounding up the coordinate divided by the maximum cell length.
-  const max = length / gridSize
-  const cell = Math.ceil(coordinate / max)
-  return cell
-}
-
-function gridPosition(x, y, width, height, rows, cols) {
-  return {
-    gridX: cellLocation(x, width, cols),
-    gridY: cellLocation(y, height, rows)
-  }
-}
-
 const movePosition = (grid, gridRef, row, col) => {
   const newGrid = grid.slice(0);
   const totalRows = newGrid.length;
@@ -107,6 +93,7 @@ function useGameBoard({
   pause,
   gameStatus,
   setGameStatus,
+  serverMove
 }) {
   const gridRef = useRef(createEmptyGrid(rows, cols));
   // const [grid, setGrid] = useState(createEmptyGrid(rows, cols))
@@ -123,6 +110,8 @@ function useGameBoard({
       // console.log(width, height)
       // console.log(rows, cols)
       console.log(tiles, "tiles")
+
+      serverMove(gridX, gridY)
 
       console.log(gridX - 1, gridY - 1)
       const { grid, tiles: newTiles } = movePosition(

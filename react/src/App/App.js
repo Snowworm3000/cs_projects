@@ -10,7 +10,7 @@ import useGameState from '../hooks/useGameState';
 import React from 'react';
 import Box from '../components/Box';
 import TileContainer from '../components/TileContainer';
-import startClient from '../Api/socket';
+// import startClient from '../Api/socket';
 import useClient from '../hooks/useSocket';
 
 function App() {
@@ -37,12 +37,12 @@ function App() {
   );
 
   
-  const {serverMove} = useClient()
+  const {serverMove, pending} = useClient()
 
   const { tiles, onMove } = useGameBoard({
     rows,
     cols,
-    pause,
+    pending,
     gameStatus,
     setGameStatus,
     serverMove

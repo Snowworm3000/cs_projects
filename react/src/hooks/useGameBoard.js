@@ -101,10 +101,9 @@ function useGameBoard({
   const [tiles2, setTiles2] = useState([])
   const pendingStackRef = useRef([]);
   const [moving, setMoving] = useState(false);
-  const pendingRef = useRef(pending);
 
   const onMove = useCallback((x, y, width, height) => {
-    if (!pendingRef.current) {
+    if (!pending.current) {
       const { gridX, gridY } = gridPosition(x, y, width, height, rows, cols)
       // console.log(x, y)
       // console.log(width, height)
@@ -161,9 +160,9 @@ function useGameBoard({
   //   }
   // }, [moving, addScore]);
 
-  useLayoutEffect(() => {
-    pendingRef.current = pending;
-  }, [pending]);
+  // useLayoutEffect(() => {
+  //   pendingRef.current = pending;
+  // }, [pending]);
 
   useEffect(() => {
     const { grid, tiles: newTiles } = resetGameBoard(rows, cols);

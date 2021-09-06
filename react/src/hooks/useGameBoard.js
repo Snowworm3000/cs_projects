@@ -19,7 +19,7 @@ const resetGameBoard = (rows, cols) => {
   };
 };
 
-const createNewTile = (row, col) => {
+const createNewTile = (row, col, hitType) => {
   const index = nextTileIndex();
   const id = getId(index);
   return {
@@ -28,7 +28,7 @@ const createNewTile = (row, col) => {
     row,
     col,
     isNew: true,
-    value: hitType(row, col),
+    value: hitType == "Miss" ? 0 : 1,
   };
 };
 
@@ -52,7 +52,7 @@ const hitType = (x, y) => { // TODO: Change hitType dynamically depending on the
 }
 
 
-const movePosition = (grid, gridRef, row, col) => {
+const movePosition = (grid, gridRef, row, col, hitType) => {
   const newGrid = grid.slice(0);
   const totalRows = newGrid.length;
   const totalCols = newGrid[0].length;
@@ -73,7 +73,7 @@ const movePosition = (grid, gridRef, row, col) => {
   //     col: col,
   //     isNew: false,
   //   };
-  const newTile = createNewTile(row, col)
+  const newTile = createNewTile(row, col, hitType)
   newGrid[row][col] = newTile;
 
   //   tiles.push(updatedTile);
@@ -86,6 +86,7 @@ const movePosition = (grid, gridRef, row, col) => {
     grid: newGrid,
   };
 }
+
 
 function useGameBoard({
   rows,
@@ -110,14 +111,23 @@ function useGameBoard({
       // console.log(rows, cols)
       console.log(tiles, "tiles")
 
-      serverMove(gridX, gridY)
+      // let response
+      serverMove(gridX -1 , gridY -1, (hitType) => moveResult(gridX, gridY, hitType))
+      // console.log(response, " yay👀")
 
-      console.log(gridX - 1, gridY - 1)
+      
+    }
+  }, [])
+
+
+  function moveResult(gridX,gridY,hitType){
+    console.log(gridX - 1, gridY - 1)
       const { grid, tiles: newTiles } = movePosition(
         gridRef.current,
         gridRef,
         gridY - 1,
         gridX - 1,
+        hitType
       );
       gridRef.current = grid;
 
@@ -140,8 +150,7 @@ function useGameBoard({
       // setTiles(["testing", 52])
       console.log(tiles, arrayToSet, "new tiles", [newTiles[0]])
       // }
-    }
-  }, [])
+  }
 
   const onMovePending = useCallback(() => {
     pendingStackRef.current.pop();

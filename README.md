@@ -33,4 +33,7 @@ This is the list of things that I think will end up with a reasonable working ve
 - Build a web front end
 - Use a framework such as Flask to make calls to the api according to GET and POST requests.
 
-In the future I plan to rebuild this in c++ for the command line, and possibly Java to run as a back end to a web app.
+
+Server external dependencies (libraries required for running the server):
+flask-socketio
+gevent-websocket // Required or long-polling is used which caused issues

@@ -65,6 +65,14 @@ export const movePosition = (grid, gridRef, row, col, hitType) => {
   
     // const tile = newGrid[row][col];
   
+    for(let i = 0; i < 10; i++){ // TODO: Change to be specific to ammount of rows and cols
+      for(let j = 0; j < 10; j++){
+        const tile = newGrid[i][j]
+        if(tile != null){
+          tiles.push(tile)
+        }
+      }
+    }
     
   
     // const currentTile = newGrid[row][col]
@@ -78,6 +86,7 @@ export const movePosition = (grid, gridRef, row, col, hitType) => {
     //     col: col,
     //     isNew: false,
     //   };
+    
     const newTile = createNewTile(row, col, hitType)
     console.log(newTile)
     // debugger

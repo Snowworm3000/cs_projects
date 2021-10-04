@@ -59,7 +59,8 @@ function useGameBoard({
 
       const arrayToSet = [newTiles[0], ...tiles]
       // const arrayToSet = "testing"
-      setTiles(prev => [newTiles[0], ...prev]);
+      // setTiles(prev => [newTiles[0], ...prev]);
+      setTiles(newTiles); // TODO: changing to use tiles set from grid variable instead
       // setTiles(["testing", 52])
       console.log(tiles, arrayToSet, "new tiles", [newTiles[0]])
       // }

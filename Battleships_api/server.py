@@ -1,4 +1,4 @@
-from Battleships import Battleships
+import Battleships
 import References
 from flask import Flask, render_template, request
 from flask_socketio import SocketIO
